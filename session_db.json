@@ -1,0 +1,23 @@
+{
+  "sessions": [
+    {
+      "id": "6225750157:6225750157",
+      "data": {
+        "contador": 5,
+        "step": null,
+        "compraId": "123123",
+        "valor": "10000",
+        "descripcion": "computador"
+      }
+    },
+    {
+      "id": "1247421156:1247421156",
+      "data": {
+        "step": null,
+        "compraId": "11111",
+        "valor": "20000",
+        "descripcion": "Zapatos"
+      }
+    }
+  ]
+}
