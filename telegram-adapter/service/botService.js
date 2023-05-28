@@ -12,6 +12,12 @@ function configureBot(token) {
     await ctx.reply("Por favor, ingresa el ID de la transacción:");
   });
 
+  bot.command("lastPayment", async (ctx) => {
+    // Solicitar el ID de la transacción
+    const lastPaymentInfo = ctx.session.paymentInfo;
+    await ctx.reply(apiService.buildMessage(lastPaymentInfo));
+  });
+
   bot.on("text", async (ctx) => {
     const message = ctx.message.text;
     console.log(message);
@@ -23,7 +29,7 @@ function configureBot(token) {
         const paymentInfo = await apiService.getPaymentInfo(message);
         // Guardar el ID en la sesión
         ctx.session.paymentId = message;
-        ctx.session.paymentInfo = paymentInfo
+        ctx.session.paymentInfo = paymentInfo;
         // Solicitar el detalle del pago
         await ctx.reply("Por favor, ingresa el detalle del pago:");
       } catch (error) {
@@ -33,16 +39,15 @@ function configureBot(token) {
         );
       }
     } else if (ctx.session && !ctx.session.description){
-        ctx.session.description = message;
-        const paymentId = ctx.session.paymentId;
-        const payment = ctx.session.paymentInfo
-
+        const payment = ctx.session.paymentInfo;
         const paymentUpdated = {
             ...payment,
             details: message
         }
+        ctx.session.description = message;
+        ctx.session.paymentInfo = paymentUpdated;
 
-        console.log("Payment to update", paymentUpdated)
+        console.log("Payment to update", paymentUpdated);
       try {
         // Realizar una llamada a la API para confirmar el detalle del pago
         await apiService.confirmPaymentDescription(paymentUpdated);
@@ -53,7 +58,12 @@ function configureBot(token) {
         await ctx.reply(
           "Ocurrió un error al confirmar el detalle del pago. Por favor, inténtalo nuevamente más tarde."
         );
+      } finally {
+        ctx.session.paymentId = null;
+        ctx.session.description = null;
       }
+    } else {
+      await ctx.reply("No hay acciones registradas")
     }
   });
 

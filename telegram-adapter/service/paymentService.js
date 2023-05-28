@@ -13,6 +13,16 @@ Si deseas agregar una descripcion adicional realiza la siguiente accion
     `;
 };
 
+const buildLastMessage = (message) => {
+  return `Ultima transaccion registrada:
+  ID: ${message.id}
+  DETALLE: 
+  ${message.description}.
+  DETAILS:
+  ${message.details}
+    `;
+};
+
 async function getPaymentInfo(id) {
   try {
     console.log("trying to get payment info")
@@ -41,5 +51,6 @@ async function confirmPaymentDescription(payment) {
 module.exports = {
   getPaymentInfo,
   confirmPaymentDescription,
-  buildMessage
+  buildMessage,
+  buildLastMessage
 };
