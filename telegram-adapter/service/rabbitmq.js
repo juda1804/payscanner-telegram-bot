@@ -42,7 +42,7 @@ async function consume(bot, chatId = "6225750157:6225750157") {
       }, { noAck: false });
 
       if (!msg) {
-        await new Promise(resolve => setTimeout(resolve, 10000));
+        await new Promise(resolve => setTimeout(resolve, 50000));
       }
     }
   } catch (error) {
