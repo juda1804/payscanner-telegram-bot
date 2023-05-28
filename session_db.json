@@ -4,10 +4,21 @@
       "id": "6225750157:6225750157",
       "data": {
         "contador": 5,
-        "step": null,
-        "compraId": "123123",
-        "valor": "10000",
-        "descripcion": "computador"
+        "step": 1,
+        "compraId": "123",
+        "valor": "312313",
+        "descripcion": "2saadad",
+        "paymentId": "459",
+        "paymentInfo": {
+          "id": 459,
+          "description": "Bancolombia le informa compra por $89.900,00 en ACTION FITNESS 11:30. 22/05/2023 compra afiliada a T.Cred *6799. Inquietudes al 6045109095/01800931987",
+          "details": "ACTION FITNESS ",
+          "card": "6799",
+          "date": "2023-05-22",
+          "price": 89900,
+          "category": null
+        },
+        "description": "ACTION FITNESS GIMNASIO"
       }
     },
     {
